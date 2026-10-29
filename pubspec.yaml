@@ -1,0 +1,52 @@
+name: true_compass
+description: "Compass heading for Flutter with magnetic and true north (offline WMM2025), calibration events, smoothing and a themeable dial. Android, iOS, web."
+version: 0.0.1
+homepage: https://github.com/Rishav1995-roy/true_compass
+repository: https://github.com/Rishav1995-roy/true_compass
+issue_tracker: https://github.com/Rishav1995-roy/true_compass/issues
+
+topics:
+  - compass
+  - sensors
+  - heading
+  - magnetometer
+  - orientation
+
+screenshots:
+  - description: CompassView rotating with a simulated heading stream (demo is rendered from a simulated stream, not a device capture).
+    path: doc/demo.gif
+  - description: Default light dial.
+    path: doc/screenshot_light.png
+  - description: Dark dial with calibration banner.
+    path: doc/screenshot_dark.png
+  - description: Customization screen with themes and a Qibla-style target marker.
+    path: doc/screenshot_custom.png
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  web: ">=1.1.0 <2.0.0"
+  plugin_platform_interface: ^2.1.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ">=5.0.0 <7.0.0"
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: dev.rishav.true_compass
+        pluginClass: TrueCompassPlugin
+      ios:
+        pluginClass: TrueCompassPlugin
+      web:
+        pluginClass: TrueCompassWeb
+        fileName: true_compass_web.dart

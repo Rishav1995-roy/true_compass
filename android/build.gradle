@@ -1,0 +1,67 @@
+group = 'dev.rishav.true_compass'
+version = '0.0.1'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Only used when this module is built on its own; apps bring their own.
+        classpath 'com.android.tools.build:gradle:8.7.3'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+// AGP 9 can compile Kotlin itself ("built-in Kotlin", the default on AGP 9
+// unless the app sets android.builtInKotlin=false) and Flutter warns about
+// plugins that still apply the Kotlin Gradle Plugin. On AGP 8, and on AGP 9
+// with built-in Kotlin off, the plugin is still needed. One build file
+// works for all of them.
+def agpMajor = 8
+try {
+    agpMajor = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION.tokenize('.')[0] as int
+} catch (Throwable ignored) {
+}
+
+def builtInKotlin = agpMajor >= 9 && project.findProperty('android.builtInKotlin') != 'false'
+
+if (!builtInKotlin) {
+    apply plugin: 'kotlin-android'
+    // Keep Kotlin and Java on the same JVM target; without this a newer JDK
+    // fails with "Inconsistent JVM-target compatibility".
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+    }
+}
+
+android {
+    namespace = 'dev.rishav.true_compass'
+
+    compileSdk = 35
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdk = 21
+    }
+}
+
+// No androidx or other dependencies on purpose: nothing here can clash with
+// the app's own versions (the cause of "android:attr/lStar not found" in
+// older compass plugins, which pulled a mismatched androidx.core).

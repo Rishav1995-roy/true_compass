@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- No permissions needed: the rotation vector sensor is a normal sensor.
+       Declared optional so devices without a magnetometer can still install. -->
+  <uses-feature android:name="android.hardware.sensor.compass" android:required="false" />
+</manifest>

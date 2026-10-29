@@ -1,0 +1,19 @@
+name: true_compass_example
+description: "Demonstrates how to use the true_compass plugin."
+publish_to: 'none'
+
+environment:
+  sdk: ^3.6.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  true_compass:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ">=5.0.0 <7.0.0"
+
+flutter:
+  uses-material-design: true

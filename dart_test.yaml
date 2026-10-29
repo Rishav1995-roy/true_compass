@@ -1,0 +1,3 @@
+tags:
+  demo:
+    description: Renders doc/demo.gif frames; run with `flutter test --tags demo tool/generate_demo_test.dart`.
