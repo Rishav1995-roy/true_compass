@@ -1,6 +1,6 @@
 name: true_compass
 description: "Compass heading for Flutter with magnetic and true north (offline WMM2025), calibration events, smoothing and a themeable dial. Android, iOS, web."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Rishav1995-roy/true_compass
 repository: https://github.com/Rishav1995-roy/true_compass
 issue_tracker: https://github.com/Rishav1995-roy/true_compass/issues
